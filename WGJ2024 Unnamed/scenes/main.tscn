@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cr4r7ht182a0c"]
 
 [ext_resource type="PackedScene" uid="uid://be4csnc543bga" path="res://scenes/river.tscn" id="1_4heyi"]
-[ext_resource type="PackedScene" uid="uid://x6bvyulac3tb" path="res://scenes/bridge.tscn" id="1_h0dan"]
+[ext_resource type="PackedScene" uid="uid://x6bvyulac3tb" path="res://scenes/dam.tscn" id="1_h0dan"]
 [ext_resource type="PackedScene" uid="uid://dnv6dmeppunu3" path="res://scenes/strut.tscn" id="3_2pcwv"]
 [ext_resource type="PackedScene" uid="uid://0uiyl0r71iuo" path="res://scenes/joint.tscn" id="4_4byuc"]
 [ext_resource type="Shader" path="res://scenes/vignette.gdshader" id="5_44woe"]
@@ -55,48 +55,76 @@ position = Vector2(101, 28)
 [node name="strut12" parent="bridge" instance=ExtResource("3_2pcwv")]
 position = Vector2(95, 28)
 
-[node name="joint" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="testing" parent="bridge" instance=ExtResource("4_4byuc")]
 position = Vector2(37, -1)
 freeze = true
 
-[node name="joint2" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer4Lower" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(1, 54)
 freeze = true
+other_layer_joint = NodePath("../layer4Upper")
 
-[node name="joint3" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer3Lower" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(-44, 49)
 freeze = true
+other_layer_joint = NodePath("../layer3Upper")
 
-[node name="joint4" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer2Lower" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(-81, 52)
 freeze = true
+other_layer_joint = NodePath("../layer2Upper")
 
-[node name="joint5" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer1Lower" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(-110, 45)
 freeze = true
+other_layer_joint = NodePath("../layer1Upper")
 
-[node name="joint6" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer0Lower" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(-164, 38)
 freeze = true
+other_layer_joint = NodePath("../layer0Upper")
 
-[node name="joint7" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer4Upper" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(-10, -50)
 freeze = true
+other_layer_joint = NodePath("../layer4Lower")
 
-[node name="joint8" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer3Upper" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(-47, -54)
 freeze = true
+other_layer_joint = NodePath("../layer3Lower")
 
-[node name="joint9" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer2Upper" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(-85, -56)
 freeze = true
+other_layer_joint = NodePath("../layer2Lower")
 
-[node name="joint10" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer1Upper" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(-129, -48)
 freeze = true
+other_layer_joint = NodePath("../layer1Lower")
 
-[node name="joint11" parent="bridge" instance=ExtResource("4_4byuc")]
+[node name="layer0Upper" parent="bridge" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
 position = Vector2(-165, -45)
+freeze = true
+other_layer_joint = NodePath("../layer0Lower")
+
+[node name="oldDamUpper" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-180, -17)
+freeze = true
+
+[node name="oldDamLower" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-185, 9)
 freeze = true
 
 [node name="mainCamera" type="Camera2D" parent="."]

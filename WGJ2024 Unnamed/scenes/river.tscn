@@ -1,7 +1,8 @@
-[gd_scene load_steps=8 format=3 uid="uid://be4csnc543bga"]
+[gd_scene load_steps=10 format=3 uid="uid://be4csnc543bga"]
 
 [ext_resource type="Texture2D" uid="uid://cjbtu61bw0y1i" path="res://sprites/water.png" id="1_plrwc"]
 [ext_resource type="Texture2D" uid="uid://c0jkr5ygqy8xr" path="res://sprites/land.png" id="2_ms2tq"]
+[ext_resource type="Texture2D" uid="uid://cdhe3x3eairvb" path="res://sprites/dam_piece.png" id="3_yxll6"]
 
 [sub_resource type="Gradient" id="Gradient_o7377"]
 offsets = PackedFloat32Array(0, 0.213115, 0.483607, 0.795082, 1)
@@ -29,6 +30,9 @@ viewport_path = NodePath("SubViewport")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d8fw"]
 size = Vector2(64, 224)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v4ax1"]
+size = Vector2(54, 20)
 
 [node name="river" type="Node2D"]
 
@@ -65,21 +69,53 @@ rotation = 3.14159
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lowerLand"]
 scale = Vector2(-1, 1)
-polygon = PackedVector2Array(-196, -33, -196, -112, 198, -112, 197, -81, 194, -70, 189.927, -70.6789, 176, -72, 171, -70, 155, -68, 144, -71, 134, -66, 126, -70, 115, -64, 105, -67, 83, -63, 69, -66, 38, -53, 31, -57, 20, -58, 6, -54, 1, -58, -11, -59, -17, -53, -25, -56, -30, -54, -36, -55, -42, -50, -63, -54, -81, -54, -90, -46, -102, -45, -117, -47, -138, -45, -143, -48, -151, -42, -147, -38, -149, -35, -168, -38, -175, -39, -192, -32)
+polygon = PackedVector2Array(-196, -33, -196, -112, 198, -112, 197, -81, 194, -70, 189.927, -70.6789, 176, -72, 171, -70, 155, -68, 144, -71, 134, -66, 126, -70, 115, -64, 105, -67, 83, -63, 68.9998, -65.0002, 38, -53, 31, -57, 20, -58, 6, -54, 1, -58, -11, -59, -17, -53, -25, -56, -30, -54, -36, -55, -42, -50, -64.0001, -52.9998, -81.0001, -52.9998, -90, -46, -102, -45, -117, -47, -138, -45, -143, -48, -151, -42, -147, -38, -149, -35, -174, -37.9996, -178, -33.9995, -192, -29.9995)
 
 [node name="upperLand" type="StaticBody2D" parent="."]
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="upperLand"]
 polygon = PackedVector2Array(-198, -45, -196, -112, 198, -112, 197, -81, 193, -68, 176, -73, 171, -70, 158, -67, 155, -70, 148, -70, 138, -66, 133, -68, 127, -64, 118, -66, 108, -63, 100, -62, 95, -66, 82, -60, 66, -60, 50, -54, 46, -57, 36, -56, 29, -51, 19, -49, 6, -52, -5, -49, -32, -52, -35, -55, -80, -54, -85, -57, -101, -57, -119, -50, -127, -49, -138, -43, -150, -46, -147, -41, -149, -39, -160, -47, -167, -44, -176, -45, -185, -38, -192, -42)
 
-[node name="downstream" type="StaticBody2D" parent="."]
+[node name="downstream" type="Area2D" parent="."]
+collision_layer = 16
+collision_mask = 0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="downstream"]
-position = Vector2(-226, 0)
+position = Vector2(-271, 0)
 shape = SubResource("RectangleShape2D_1d8fw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="downstream"]
+position = Vector2(-212, 102)
+shape = SubResource("RectangleShape2D_v4ax1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="downstream"]
+position = Vector2(-212, -102)
+shape = SubResource("RectangleShape2D_v4ax1")
 
 [node name="upstream" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="upstream"]
 position = Vector2(226, 0)
 shape = SubResource("RectangleShape2D_1d8fw")
+
+[node name="oldDamSection" type="StaticBody2D" parent="."]
+position = Vector2(-189, -17)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="oldDamSection"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("3_yxll6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="oldDamSection"]
+polygon = PackedVector2Array(0, -5, 9, 0, 0, 5, -9, 0)
+
+[node name="oldDamSection2" type="StaticBody2D" parent="."]
+position = Vector2(-194, 9)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="oldDamSection2"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("3_yxll6")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="oldDamSection2"]
+polygon = PackedVector2Array(0, -5, 9, 0, 0, 5, -9, 0)

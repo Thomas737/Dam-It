@@ -4,13 +4,12 @@ const joint = preload("res://scenes/joint.tscn")
 var connected_joints = []
 
 var physical_length = 22
-var links = []
-
 var selected = false
 var rotation_speed = 3
 
 var target_snap = null
 var self_snap = null
+var broken = false
 
 func _ready():
 	pass
@@ -21,6 +20,10 @@ func _process(delta):
 	if target_snap in connected_joints:
 		target_snap = null
 		self_snap = null
+	
+	if broken:
+		broken = false
+		truss(true)
 	
 	if selected:
 		if is_instance_valid(target_snap):
@@ -37,15 +40,21 @@ func _on_interaction(_viewport, event: InputEvent, _shape_idx):
 		$selected.visible = !$selected.visible
 		
 		if not selected:
-			truss()
+			truss(false)
+			$combine.play()
 			$sprite.play("grow", 5, false)
 		else:
 			for connected_joint in connected_joints:
 				if is_instance_valid(connected_joint) and connected_joint:
 					connected_joint.connected_struts.erase(self)
+			$break.play()
 			$sprite.play("grow", -5, true)
 
-func truss():
+func queue_separation():
+	broken = true
+	$break.play()
+
+func truss(broken):
 	disconnect_area()
 	var lower_links = $snappingAreaLower.get_overlapping_areas()
 	var upper_links = $snappingAreaUpper.get_overlapping_areas()
@@ -53,12 +62,12 @@ func truss():
 	var new_joint_lower
 	var new_joint_upper
 	
-	if not lower_links:
+	if not lower_links or broken:
 		new_joint_lower = construct_joint(-1)
 	else:
 		new_joint_lower = lower_links[0].get_parent()
 	
-	if not upper_links:
+	if not upper_links or broken:
 		new_joint_upper = construct_joint(1)
 	else:
 		new_joint_upper = upper_links[0].get_parent()
@@ -68,6 +77,11 @@ func truss():
 	
 	new_joint_lower.connected_struts[self] = new_joint_upper
 	new_joint_upper.connected_struts[self] = new_joint_lower
+	
+	if upper_links:
+		new_joint_upper.connected_to()
+	if lower_links:
+		new_joint_lower.connected_to()
 
 func construct_joint(direction):
 	var new_joint = joint.instantiate()
@@ -93,3 +107,9 @@ func _on_snappingAreaLower_enter(area: Area2D):
 func disconnect_area():
 	target_snap = null
 	self_snap = Vector2(0, 1)
+
+func _deletion_area_entered(area):
+	for connected_joint in connected_joints:
+		if is_instance_valid(connected_joint) and connected_joint:
+			connected_joint.connected_struts.erase(self)
+	queue_free()
