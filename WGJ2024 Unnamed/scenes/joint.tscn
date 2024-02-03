@@ -1,0 +1,37 @@
+[gd_scene load_steps=6 format=3 uid="uid://0uiyl0r71iuo"]
+
+[ext_resource type="Script" path="res://scenes/joint.gd" id="1_thymy"]
+[ext_resource type="Texture2D" uid="uid://bx4p0bvasfmgn" path="res://sprites/struts/joint.png" id="2_xeile"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_work3"]
+friction = 0.5
+rough = true
+bounce = 0.6
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_b7tu0"]
+radius = 4.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_v7jfs"]
+size = Vector2(8, 8)
+
+[node name="joint" type="RigidBody2D"]
+top_level = true
+physics_material_override = SubResource("PhysicsMaterial_work3")
+gravity_scale = 0.0
+linear_damp = 1.0
+script = ExtResource("1_thymy")
+metadata/_edit_group_ = true
+
+[node name="shape" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_b7tu0")
+
+[node name="sprite" type="Sprite2D" parent="."]
+rotation = 0.785398
+texture = ExtResource("2_xeile")
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 2
+collision_mask = 0
+
+[node name="shape" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("RectangleShape2D_v7jfs")

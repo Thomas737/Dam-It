@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://btxmkhxmhvwlm"]
+
+[ext_resource type="Script" path="res://scenes/springTesting.gd" id="1_501pn"]
+[ext_resource type="PackedScene" uid="uid://0uiyl0r71iuo" path="res://scenes/joint.tscn" id="1_acf72"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4wlox"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ree2h"]
+
+[node name="springTesting" type="Node2D"]
+script = ExtResource("1_501pn")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+
+[node name="joint" parent="." instance=ExtResource("1_acf72")]
+unique_name_in_owner = true
+position = Vector2(-32, 0)
+physics_material_override = SubResource("PhysicsMaterial_4wlox")
+gravity_scale = 0.01
+inertia = 2.0
+
+[node name="joint2" parent="." instance=ExtResource("1_acf72")]
+unique_name_in_owner = true
+position = Vector2(32, 0)
+physics_material_override = SubResource("PhysicsMaterial_ree2h")
+freeze = true
+
+[node name="DampedSpringJoint2D" type="DampedSpringJoint2D" parent="joint2"]
+rotation = 1.5708
+node_a = NodePath("../../joint")
+node_b = NodePath("..")
+length = 64.0
+rest_length = 1.0
+stiffness = 5.1
+damping = 2.84

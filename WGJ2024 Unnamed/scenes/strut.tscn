@@ -1,0 +1,91 @@
+[gd_scene load_steps=12 format=3 uid="uid://dnv6dmeppunu3"]
+
+[ext_resource type="Script" path="res://scripts/strut.gd" id="1_01eu7"]
+[ext_resource type="Texture2D" uid="uid://bym6ocn6mk4q5" path="res://sprites/struts/wood strut-sheet.png" id="2_g65x0"]
+[ext_resource type="Texture2D" uid="uid://db5c8p22f32ms" path="res://sprites/highlight/selected.png" id="3_4c3e8"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_uqpf0"]
+atlas = ExtResource("2_g65x0")
+region = Rect2(0, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_hte0r"]
+atlas = ExtResource("2_g65x0")
+region = Rect2(16, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t3e0q"]
+atlas = ExtResource("2_g65x0")
+region = Rect2(32, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pnqw4"]
+atlas = ExtResource("2_g65x0")
+region = Rect2(48, 0, 16, 32)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_483b7"]
+atlas = ExtResource("2_g65x0")
+region = Rect2(64, 0, 16, 32)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_kev66"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_uqpf0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_hte0r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t3e0q")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pnqw4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_483b7")
+}],
+"loop": false,
+"name": &"grow",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_nmu52"]
+size = Vector2(6, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_hx34t"]
+size = Vector2(6, 6)
+
+[node name="strut" type="Node2D"]
+script = ExtResource("1_01eu7")
+metadata/_edit_group_ = true
+
+[node name="sprite" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_kev66")
+animation = &"grow"
+
+[node name="selected" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("3_4c3e8")
+
+[node name="selectionArea" type="Area2D" parent="."]
+
+[node name="shape" type="CollisionShape2D" parent="selectionArea"]
+shape = SubResource("RectangleShape2D_nmu52")
+
+[node name="snappingAreaUpper" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="shape" type="CollisionShape2D" parent="snappingAreaUpper"]
+position = Vector2(0, -11)
+shape = SubResource("RectangleShape2D_hx34t")
+
+[node name="snappingAreaLower" type="Area2D" parent="."]
+collision_layer = 0
+collision_mask = 2
+
+[node name="shape" type="CollisionShape2D" parent="snappingAreaLower"]
+position = Vector2(0, 11)
+shape = SubResource("RectangleShape2D_hx34t")
+
+[connection signal="input_event" from="selectionArea" to="." method="_on_interaction"]
+[connection signal="area_entered" from="snappingAreaUpper" to="." method="_on_snappingAreaUpper_enter"]
+[connection signal="area_entered" from="snappingAreaLower" to="." method="_on_snappingAreaLower_enter"]

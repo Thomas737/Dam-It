@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://x6bvyulac3tb"]
+
+[ext_resource type="Script" path="res://scripts/bridge.gd" id="1_ggiqj"]
+[ext_resource type="PackedScene" uid="uid://dnv6dmeppunu3" path="res://scenes/strut.tscn" id="2_vnftx"]
+
+[node name="bridge" type="Node2D"]
+script = ExtResource("1_ggiqj")
+
+[node name="strut" parent="." instance=ExtResource("2_vnftx")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(5, 5)
+
+[node name="strut2" parent="." instance=ExtResource("2_vnftx")]
+position = Vector2(57, 0)
+
+[node name="strut3" parent="." instance=ExtResource("2_vnftx")]
+position = Vector2(29, -42)
+
+[node name="strut4" parent="." instance=ExtResource("2_vnftx")]
+position = Vector2(-25, -42)
+
+[node name="strut5" parent="." instance=ExtResource("2_vnftx")]
+position = Vector2(30, 37)
+
+[node name="strut6" parent="." instance=ExtResource("2_vnftx")]
+position = Vector2(-23, 42)
+
+[node name="strut7" parent="." instance=ExtResource("2_vnftx")]
+position = Vector2(-47, 1)

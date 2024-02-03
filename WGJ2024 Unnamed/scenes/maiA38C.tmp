@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cr4r7ht182a0c"]
+
+[ext_resource type="PackedScene" uid="uid://x6bvyulac3tb" path="res://scenes/bridge.tscn" id="1_h0dan"]
+
+[node name="main" type="Node2D"]
+
+[node name="bridge" parent="." instance=ExtResource("1_h0dan")]
+
+[node name="mainCamera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

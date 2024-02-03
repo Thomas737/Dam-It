@@ -1,0 +1,114 @@
+[gd_scene load_steps=7 format=3 uid="uid://cr4r7ht182a0c"]
+
+[ext_resource type="PackedScene" uid="uid://be4csnc543bga" path="res://scenes/river.tscn" id="1_4heyi"]
+[ext_resource type="PackedScene" uid="uid://x6bvyulac3tb" path="res://scenes/bridge.tscn" id="1_h0dan"]
+[ext_resource type="PackedScene" uid="uid://dnv6dmeppunu3" path="res://scenes/strut.tscn" id="3_2pcwv"]
+[ext_resource type="PackedScene" uid="uid://0uiyl0r71iuo" path="res://scenes/joint.tscn" id="4_4byuc"]
+[ext_resource type="Shader" path="res://scenes/vignette.gdshader" id="5_44woe"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qa63n"]
+shader = ExtResource("5_44woe")
+shader_parameter/color = null
+shader_parameter/multiplier = 0.36
+shader_parameter/softness = 0.84
+
+[node name="main" type="Node2D"]
+
+[node name="river" parent="." instance=ExtResource("1_4heyi")]
+metadata/_edit_group_ = true
+
+[node name="bridge" parent="." instance=ExtResource("1_h0dan")]
+
+[node name="strut" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(83, -28)
+
+[node name="strut2" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(95, 0)
+
+[node name="strut3" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(89, 0)
+
+[node name="strut4" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(83, 0)
+
+[node name="strut5" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(89, -28)
+
+[node name="strut6" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(101, -28)
+
+[node name="strut7" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(95, -28)
+
+[node name="strut8" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(89, 28)
+
+[node name="strut9" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(83, 28)
+
+[node name="strut10" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(101, 0)
+
+[node name="strut11" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(101, 28)
+
+[node name="strut12" parent="bridge" instance=ExtResource("3_2pcwv")]
+position = Vector2(95, 28)
+
+[node name="joint" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(37, -1)
+freeze = true
+
+[node name="joint2" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(1, 54)
+freeze = true
+
+[node name="joint3" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-44, 49)
+freeze = true
+
+[node name="joint4" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-81, 52)
+freeze = true
+
+[node name="joint5" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-110, 45)
+freeze = true
+
+[node name="joint6" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-164, 38)
+freeze = true
+
+[node name="joint7" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-10, -50)
+freeze = true
+
+[node name="joint8" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-47, -54)
+freeze = true
+
+[node name="joint9" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-85, -56)
+freeze = true
+
+[node name="joint10" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-129, -48)
+freeze = true
+
+[node name="joint11" parent="bridge" instance=ExtResource("4_4byuc")]
+position = Vector2(-165, -45)
+freeze = true
+
+[node name="mainCamera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="vignette" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="vignette"]
+material = SubResource("ShaderMaterial_qa63n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1

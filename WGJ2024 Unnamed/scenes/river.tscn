@@ -1,0 +1,85 @@
+[gd_scene load_steps=8 format=3 uid="uid://be4csnc543bga"]
+
+[ext_resource type="Texture2D" uid="uid://cjbtu61bw0y1i" path="res://sprites/water.png" id="1_plrwc"]
+[ext_resource type="Texture2D" uid="uid://c0jkr5ygqy8xr" path="res://sprites/land.png" id="2_ms2tq"]
+
+[sub_resource type="Gradient" id="Gradient_o7377"]
+offsets = PackedFloat32Array(0, 0.213115, 0.483607, 0.795082, 1)
+colors = PackedColorArray(0.501961, 0.65098, 0.913725, 1, 0.839615, 0.887604, 0.972217, 1, 1, 1, 1, 1, 0.864434, 0.905492, 0.976822, 1, 0.525521, 0.669221, 0.918879, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_a2jxt"]
+gradient = SubResource("Gradient_o7377")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_y64gj"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(192, 108, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-1, 0, 0)
+spread = 20.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+color = Color(0.733333, 1, 1, 0.615686)
+color_ramp = SubResource("GradientTexture1D_a2jxt")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_rv2gp"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_1d8fw"]
+size = Vector2(64, 224)
+
+[node name="river" type="Node2D"]
+
+[node name="Water" type="Sprite2D" parent="."]
+texture = ExtResource("1_plrwc")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(384, 216)
+
+[node name="streamParticles" type="GPUParticles2D" parent="SubViewport"]
+position = Vector2(212, 108)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_y64gj")
+visibility_rect = Rect2(0, 0, 0, 0)
+trail_enabled = true
+trail_lifetime = 0.2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = -192.0
+offset_top = -108.0
+offset_right = 192.0
+offset_bottom = 108.0
+texture = SubResource("ViewportTexture_rv2gp")
+
+[node name="Land" type="Sprite2D" parent="."]
+texture = ExtResource("2_ms2tq")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="lowerLand" type="StaticBody2D" parent="."]
+rotation = 3.14159
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="lowerLand"]
+scale = Vector2(-1, 1)
+polygon = PackedVector2Array(-196, -33, -196, -112, 198, -112, 197, -81, 194, -70, 189.927, -70.6789, 176, -72, 171, -70, 155, -68, 144, -71, 134, -66, 126, -70, 115, -64, 105, -67, 83, -63, 69, -66, 38, -53, 31, -57, 20, -58, 6, -54, 1, -58, -11, -59, -17, -53, -25, -56, -30, -54, -36, -55, -42, -50, -63, -54, -81, -54, -90, -46, -102, -45, -117, -47, -138, -45, -143, -48, -151, -42, -147, -38, -149, -35, -168, -38, -175, -39, -192, -32)
+
+[node name="upperLand" type="StaticBody2D" parent="."]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="upperLand"]
+polygon = PackedVector2Array(-198, -45, -196, -112, 198, -112, 197, -81, 193, -68, 176, -73, 171, -70, 158, -67, 155, -70, 148, -70, 138, -66, 133, -68, 127, -64, 118, -66, 108, -63, 100, -62, 95, -66, 82, -60, 66, -60, 50, -54, 46, -57, 36, -56, 29, -51, 19, -49, 6, -52, -5, -49, -32, -52, -35, -55, -80, -54, -85, -57, -101, -57, -119, -50, -127, -49, -138, -43, -150, -46, -147, -41, -149, -39, -160, -47, -167, -44, -176, -45, -185, -38, -192, -42)
+
+[node name="downstream" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="downstream"]
+position = Vector2(-226, 0)
+shape = SubResource("RectangleShape2D_1d8fw")
+
+[node name="upstream" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="upstream"]
+position = Vector2(226, 0)
+shape = SubResource("RectangleShape2D_1d8fw")
