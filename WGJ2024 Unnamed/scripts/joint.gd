@@ -2,11 +2,9 @@ extends RigidBody2D
 
 @export var other_layer_joint: RigidBody2D
 
+const break_point = 10
 const water_power = -20
 const k = 8
-const b = -0.5
-
-const break_point = 10
 
 var connected_struts = {}
 
@@ -53,9 +51,6 @@ func _process(delta):
 				strut.connected_joints = []
 				strut.queue_separation()
 				connected_struts.erase(strut)
-			elif (abs(extension) < 2):
-				var relative_velocity = linear_velocity - joint.linear_velocity
-				add_constant_central_force(relative_velocity * b)
 			
 			strut.position = direction_inwards * distance_to_joint/2 + position
 			strut.rotation = direction_inwards.angle() + PI/2

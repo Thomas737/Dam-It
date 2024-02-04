@@ -5,6 +5,10 @@ var static_joints = []
 const static_layer_n = 5
 var current_layer = 0
 
+func _process(_delta):
+	if not $creaking.playing and current_layer > 0:
+		$creaking.playing = true
+
 func _ready():
 	for static_joint in range(static_layer_n):
 		static_joints.append(get_node("layer%sLower" % static_joint))

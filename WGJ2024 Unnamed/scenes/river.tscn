@@ -1,8 +1,9 @@
-[gd_scene load_steps=10 format=3 uid="uid://be4csnc543bga"]
+[gd_scene load_steps=11 format=3 uid="uid://be4csnc543bga"]
 
 [ext_resource type="Texture2D" uid="uid://cjbtu61bw0y1i" path="res://sprites/water.png" id="1_plrwc"]
 [ext_resource type="Texture2D" uid="uid://c0jkr5ygqy8xr" path="res://sprites/land.png" id="2_ms2tq"]
 [ext_resource type="Texture2D" uid="uid://cdhe3x3eairvb" path="res://sprites/dam_piece.png" id="3_yxll6"]
+[ext_resource type="AudioStream" uid="uid://csk6thicbb5d5" path="res://sound/natural_sound/water.wav" id="4_noqrv"]
 
 [sub_resource type="Gradient" id="Gradient_o7377"]
 offsets = PackedFloat32Array(0, 0.213115, 0.483607, 0.795082, 1)
@@ -24,9 +25,11 @@ gravity = Vector3(0, 0, 0)
 scale_max = 1.5
 color = Color(0.733333, 1, 1, 0.615686)
 color_ramp = SubResource("GradientTexture1D_a2jxt")
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 10.0
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_rv2gp"]
-viewport_path = NodePath("SubViewport")
+viewport_path = NodePath("stream")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_1d8fw"]
 size = Vector2(64, 224)
@@ -39,11 +42,11 @@ size = Vector2(54, 20)
 [node name="Water" type="Sprite2D" parent="."]
 texture = ExtResource("1_plrwc")
 
-[node name="SubViewport" type="SubViewport" parent="."]
+[node name="stream" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(384, 216)
 
-[node name="streamParticles" type="GPUParticles2D" parent="SubViewport"]
+[node name="streamParticles" type="GPUParticles2D" parent="stream"]
 position = Vector2(212, 108)
 amount = 200
 process_material = SubResource("ParticleProcessMaterial_y64gj")
@@ -51,12 +54,13 @@ visibility_rect = Rect2(0, 0, 0, 0)
 trail_enabled = true
 trail_lifetime = 0.2
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="streamTexture" type="TextureRect" parent="."]
 offset_left = -192.0
 offset_top = -108.0
 offset_right = 192.0
 offset_bottom = 108.0
 texture = SubResource("ViewportTexture_rv2gp")
+metadata/_edit_use_anchors_ = true
 
 [node name="Land" type="Sprite2D" parent="."]
 texture = ExtResource("2_ms2tq")
@@ -119,3 +123,8 @@ texture = ExtResource("3_yxll6")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="oldDamSection2"]
 polygon = PackedVector2Array(0, -5, 9, 0, 0, 5, -9, 0)
+
+[node name="water" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_noqrv")
+volume_db = -15.0
+autoplay = true

@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://0uiyl0r71iuo"]
 
-[ext_resource type="Script" path="res://scenes/joint.gd" id="1_thymy"]
+[ext_resource type="Script" path="res://scripts/joint.gd" id="1_6io4x"]
 [ext_resource type="Texture2D" uid="uid://bx4p0bvasfmgn" path="res://sprites/struts/joint.png" id="2_xeile"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_work3"]
@@ -19,7 +19,7 @@ top_level = true
 physics_material_override = SubResource("PhysicsMaterial_work3")
 gravity_scale = 0.0
 linear_damp = 1.0
-script = ExtResource("1_thymy")
+script = ExtResource("1_6io4x")
 metadata/_edit_group_ = true
 
 [node name="shape" type="CollisionShape2D" parent="."]

@@ -1,0 +1,231 @@
+[gd_scene load_steps=16 format=3 uid="uid://cr4r7ht182a0c"]
+
+[ext_resource type="PackedScene" uid="uid://be4csnc543bga" path="res://scenes/river.tscn" id="1_4heyi"]
+[ext_resource type="PackedScene" uid="uid://x6bvyulac3tb" path="res://scenes/dam.tscn" id="1_h0dan"]
+[ext_resource type="Script" path="res://scripts/game.gd" id="1_inah7"]
+[ext_resource type="PackedScene" uid="uid://dnv6dmeppunu3" path="res://scenes/strut.tscn" id="3_2pcwv"]
+[ext_resource type="PackedScene" uid="uid://0uiyl0r71iuo" path="res://scenes/joint.tscn" id="4_4byuc"]
+[ext_resource type="Shader" path="res://scripts/vignette.gdshader" id="5_44woe"]
+[ext_resource type="AudioStream" uid="uid://d2wc6ckxk8nfx" path="res://sound/natural_sound/thunder_1.mp3" id="6_hs7vx"]
+[ext_resource type="Texture2D" uid="uid://bivyw858qrcs5" path="res://sprites/highlight/screen_mask.png" id="6_l2es0"]
+[ext_resource type="AudioStream" uid="uid://c32f2wjcbtk32" path="res://sound/natural_sound/thunder_2.mp3" id="7_kayvf"]
+[ext_resource type="Texture2D" uid="uid://bh8s7nh2l0vxk" path="res://sprites/highlight/lightning_mask.png" id="7_swr25"]
+[ext_resource type="AudioStream" uid="uid://8yai3j8o3ydg" path="res://sound/natural_sound/thunder_3.mp3" id="8_f77n7"]
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a45qd"]
+lifetime_randomness = 0.6
+particle_flag_disable_z = true
+emission_shape_offset = Vector3(-192, -108, 0)
+emission_shape = 3
+emission_box_extents = Vector3(500, 0, 0)
+direction = Vector3(-0.4, 1, 0)
+spread = 8.0
+initial_velocity_min = 348.91
+initial_velocity_max = 494.98
+gravity = Vector3(0, 0, 0)
+color = Color(0.729412, 0.709804, 0.690196, 1)
+sub_emitter_mode = 2
+sub_emitter_amount_at_end = 4
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_yfyml"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(2, 2, 0)
+emission_shape = 1
+emission_sphere_radius = 3.0
+direction = Vector3(0, -1, 0)
+flatness = 0.236
+initial_velocity_min = 44.94
+initial_velocity_max = 44.94
+gravity = Vector3(0, 98, 0)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_8c7rk"]
+viewport_path = NodePath("rain")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_qa63n"]
+shader = ExtResource("5_44woe")
+shader_parameter/color = null
+shader_parameter/multiplier = 0.36
+shader_parameter/softness = 0.84
+
+[node name="game" type="Node2D"]
+script = ExtResource("1_inah7")
+
+[node name="river" parent="." instance=ExtResource("1_4heyi")]
+metadata/_edit_group_ = true
+
+[node name="dam" parent="." instance=ExtResource("1_h0dan")]
+
+[node name="strut" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(83, -28)
+
+[node name="strut2" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(95, 0)
+
+[node name="strut3" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(89, 0)
+
+[node name="strut4" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(83, 0)
+
+[node name="strut5" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(89, -28)
+
+[node name="strut6" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(101, -28)
+
+[node name="strut7" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(95, -28)
+
+[node name="strut8" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(89, 28)
+
+[node name="strut9" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(83, 28)
+
+[node name="strut10" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(101, 0)
+
+[node name="strut11" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(101, 28)
+
+[node name="strut12" parent="dam" instance=ExtResource("3_2pcwv")]
+position = Vector2(95, 28)
+
+[node name="testing" parent="dam" instance=ExtResource("4_4byuc")]
+position = Vector2(37, -1)
+freeze = true
+
+[node name="layer4Lower" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(1, 54)
+freeze = true
+other_layer_joint = NodePath("../layer4Upper")
+
+[node name="layer3Lower" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(-44, 49)
+freeze = true
+other_layer_joint = NodePath("../layer3Upper")
+
+[node name="layer2Lower" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(-81, 52)
+freeze = true
+other_layer_joint = NodePath("../layer2Upper")
+
+[node name="layer1Lower" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(-110, 45)
+freeze = true
+other_layer_joint = NodePath("../layer1Upper")
+
+[node name="layer0Lower" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(-164, 38)
+freeze = true
+other_layer_joint = NodePath("../layer0Upper")
+
+[node name="layer4Upper" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(-10, -50)
+freeze = true
+other_layer_joint = NodePath("../layer4Lower")
+
+[node name="layer3Upper" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(-47, -54)
+freeze = true
+other_layer_joint = NodePath("../layer3Lower")
+
+[node name="layer2Upper" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(-85, -56)
+freeze = true
+other_layer_joint = NodePath("../layer2Lower")
+
+[node name="layer1Upper" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(-129, -48)
+freeze = true
+other_layer_joint = NodePath("../layer1Lower")
+
+[node name="layer0Upper" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_4byuc")]
+unique_name_in_owner = true
+position = Vector2(-165, -45)
+freeze = true
+other_layer_joint = NodePath("../layer0Lower")
+
+[node name="oldDamUpper" parent="dam" instance=ExtResource("4_4byuc")]
+position = Vector2(-180, -17)
+freeze = true
+
+[node name="oldDamLower" parent="dam" instance=ExtResource("4_4byuc")]
+position = Vector2(-185, 9)
+freeze = true
+
+[node name="mainCamera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="rain" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(384, 216)
+
+[node name="rainParticles" type="GPUParticles2D" parent="rain"]
+position = Vector2(192, 108)
+amount = 500
+sub_emitter = NodePath("../splashParticles")
+process_material = SubResource("ParticleProcessMaterial_a45qd")
+lifetime = 0.6
+visibility_rect = Rect2(0, 0, 0, 0)
+trail_enabled = true
+trail_lifetime = 0.02
+
+[node name="splashParticles" type="GPUParticles2D" parent="rain"]
+emitting = false
+amount = 15
+process_material = SubResource("ParticleProcessMaterial_yfyml")
+lifetime = 0.5
+one_shot = true
+
+[node name="rainTexture" type="TextureRect" parent="."]
+z_index = 1
+offset_left = -192.0
+offset_top = -108.0
+offset_right = 192.0
+offset_bottom = 108.0
+texture = SubResource("ViewportTexture_8c7rk")
+
+[node name="darkness_mask" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.258824)
+z_index = 1
+texture = ExtResource("6_l2es0")
+
+[node name="lightning_mask" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+z_index = 1
+texture = ExtResource("7_swr25")
+
+[node name="vignette" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="vignette"]
+z_index = 1
+material = SubResource("ShaderMaterial_qa63n")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+
+[node name="thunder_1" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("6_hs7vx")
+
+[node name="thunder_2" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("7_kayvf")
+
+[node name="thunder_3" type="AudioStreamPlayer" parent="."]
+unique_name_in_owner = true
+stream = ExtResource("8_f77n7")

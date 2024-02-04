@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://btxmkhxmhvwlm"]
 
-[ext_resource type="Script" path="res://scenes/springTesting.gd" id="1_501pn"]
+[ext_resource type="Script" path="res://scripts/springTesting.gd" id="1_501pn"]
 [ext_resource type="PackedScene" uid="uid://0uiyl0r71iuo" path="res://scenes/joint.tscn" id="1_acf72"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_4wlox"]
