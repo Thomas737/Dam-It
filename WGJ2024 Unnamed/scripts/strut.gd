@@ -12,14 +12,11 @@ var self_snap = null
 var broken = false
 
 func _ready():
-	pass
+	truss(true)
 
 func _process(delta):
 	if Input.is_action_just_pressed("de_snap"):
 		disconnect_area()
-	if target_snap in connected_joints:
-		target_snap = null
-		self_snap = null
 	
 	if broken:
 		broken = false
@@ -40,22 +37,26 @@ func _on_interaction(_viewport, event: InputEvent, _shape_idx):
 		$selected.visible = !$selected.visible
 		
 		if not selected:
-			truss(false)
-			$combine.play()
-			$sprite.play("grow", 5, false)
+			deselect()
 		else:
+			get_parent().new_selection(self)
 			for connected_joint in connected_joints:
 				if is_instance_valid(connected_joint) and connected_joint:
 					connected_joint.connected_struts.erase(self)
-			$break.play()
+			$remove.play()
 			$sprite.play("grow", -5, true)
+
+func deselect():
+	if truss(false):
+		$combine.play()
+	$selected.visible = false
+	$sprite.play("grow", 5, false)
 
 func queue_separation():
 	broken = true
-	$break.play()
+	$remove.play()
 
 func truss(broken):
-	disconnect_area()
 	var lower_links = $snappingAreaLower.get_overlapping_areas()
 	var upper_links = $snappingAreaUpper.get_overlapping_areas()
 	
@@ -82,6 +83,8 @@ func truss(broken):
 		new_joint_upper.connected_to()
 	if lower_links:
 		new_joint_lower.connected_to()
+	
+	return lower_links or upper_links
 
 func construct_joint(direction):
 	var new_joint = joint.instantiate()

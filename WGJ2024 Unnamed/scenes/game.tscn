@@ -3,7 +3,6 @@
 [ext_resource type="PackedScene" uid="uid://be4csnc543bga" path="res://scenes/river.tscn" id="1_4heyi"]
 [ext_resource type="PackedScene" uid="uid://x6bvyulac3tb" path="res://scenes/dam.tscn" id="1_h0dan"]
 [ext_resource type="Script" path="res://scripts/game.gd" id="1_inah7"]
-[ext_resource type="PackedScene" uid="uid://dnv6dmeppunu3" path="res://scenes/strut.tscn" id="3_2pcwv"]
 [ext_resource type="PackedScene" uid="uid://0uiyl0r71iuo" path="res://scenes/joint.tscn" id="4_4byuc"]
 [ext_resource type="Shader" path="res://scripts/vignette.gdshader" id="5_44woe"]
 [ext_resource type="AudioStream" uid="uid://d2wc6ckxk8nfx" path="res://sound/natural_sound/thunder_1.mp3" id="6_hs7vx"]
@@ -11,6 +10,7 @@
 [ext_resource type="AudioStream" uid="uid://c32f2wjcbtk32" path="res://sound/natural_sound/thunder_2.mp3" id="7_kayvf"]
 [ext_resource type="Texture2D" uid="uid://bh8s7nh2l0vxk" path="res://sprites/highlight/lightning_mask.png" id="7_swr25"]
 [ext_resource type="AudioStream" uid="uid://8yai3j8o3ydg" path="res://sound/natural_sound/thunder_3.mp3" id="8_f77n7"]
+[ext_resource type="AudioStream" uid="uid://dxokagj80xbrw" path="res://sound/music/ending_music.wav" id="11_j3hel"]
 
 [sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_a45qd"]
 lifetime_randomness = 0.6
@@ -48,48 +48,13 @@ shader_parameter/multiplier = 0.36
 shader_parameter/softness = 0.84
 
 [node name="game" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_inah7")
 
 [node name="river" parent="." instance=ExtResource("1_4heyi")]
 metadata/_edit_group_ = true
 
 [node name="dam" parent="." instance=ExtResource("1_h0dan")]
-
-[node name="strut" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(83, -28)
-
-[node name="strut2" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(95, 0)
-
-[node name="strut3" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(89, 0)
-
-[node name="strut4" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(83, 0)
-
-[node name="strut5" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(89, -28)
-
-[node name="strut6" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(101, -28)
-
-[node name="strut7" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(95, -28)
-
-[node name="strut8" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(89, 28)
-
-[node name="strut9" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(83, 28)
-
-[node name="strut10" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(101, 0)
-
-[node name="strut11" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(101, 28)
-
-[node name="strut12" parent="dam" instance=ExtResource("3_2pcwv")]
-position = Vector2(95, 28)
 
 [node name="testing" parent="dam" instance=ExtResource("4_4byuc")]
 position = Vector2(37, -1)
@@ -163,9 +128,6 @@ freeze = true
 position = Vector2(-185, 9)
 freeze = true
 
-[node name="mainCamera" type="Camera2D" parent="."]
-zoom = Vector2(3, 3)
-
 [node name="rain" type="SubViewport" parent="."]
 transparent_bg = true
 size = Vector2i(384, 216)
@@ -229,3 +191,8 @@ stream = ExtResource("7_kayvf")
 [node name="thunder_3" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("8_f77n7")
+
+[node name="ending_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("11_j3hel")
+volume_db = -3.0
+autoplay = true

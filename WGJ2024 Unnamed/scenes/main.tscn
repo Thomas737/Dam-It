@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://61ua8kb700fg"]
+
+[ext_resource type="Script" path="res://scenes/main.gd" id="1_1hlts"]
+
+[node name="main" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_1hlts")
+
+[node name="mainCamera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

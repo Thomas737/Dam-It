@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://be4csnc543bga"]
+[gd_scene load_steps=12 format=3 uid="uid://be4csnc543bga"]
 
 [ext_resource type="Texture2D" uid="uid://cjbtu61bw0y1i" path="res://sprites/water.png" id="1_plrwc"]
 [ext_resource type="Texture2D" uid="uid://c0jkr5ygqy8xr" path="res://sprites/land.png" id="2_ms2tq"]
@@ -35,9 +35,13 @@ viewport_path = NodePath("stream")
 size = Vector2(64, 224)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_v4ax1"]
-size = Vector2(54, 20)
+size = Vector2(54, 42.5)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_w76ha"]
+size = Vector2(20, 308)
 
 [node name="river" type="Node2D"]
+z_index = -10
 
 [node name="Water" type="Sprite2D" parent="."]
 texture = ExtResource("1_plrwc")
@@ -66,6 +70,7 @@ metadata/_edit_use_anchors_ = true
 texture = ExtResource("2_ms2tq")
 
 [node name="Camera2D" type="Camera2D" parent="."]
+enabled = false
 zoom = Vector2(3, 3)
 
 [node name="lowerLand" type="StaticBody2D" parent="."]
@@ -96,11 +101,27 @@ shape = SubResource("RectangleShape2D_v4ax1")
 position = Vector2(-212, -102)
 shape = SubResource("RectangleShape2D_v4ax1")
 
+[node name="jointCulling" type="Area2D" parent="."]
+collision_layer = 32
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="jointCulling"]
+position = Vector2(-313, 0)
+shape = SubResource("RectangleShape2D_w76ha")
+
 [node name="upstream" type="StaticBody2D" parent="."]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="upstream"]
-position = Vector2(226, 0)
+position = Vector2(277, 0)
 shape = SubResource("RectangleShape2D_1d8fw")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="upstream"]
+position = Vector2(218, 91.5)
+shape = SubResource("RectangleShape2D_v4ax1")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="upstream"]
+position = Vector2(218, -91.25)
+shape = SubResource("RectangleShape2D_v4ax1")
 
 [node name="oldDamSection" type="StaticBody2D" parent="."]
 position = Vector2(-189, -17)
@@ -126,5 +147,5 @@ polygon = PackedVector2Array(0, -5, 9, 0, 0, 5, -9, 0)
 
 [node name="water" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_noqrv")
-volume_db = -15.0
+volume_db = -18.0
 autoplay = true
