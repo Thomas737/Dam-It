@@ -1,7 +1,9 @@
-[gd_scene load_steps=3 format=3 uid="uid://x6bvyulac3tb"]
+[gd_scene load_steps=5 format=3 uid="uid://x6bvyulac3tb"]
 
 [ext_resource type="Script" path="res://scripts/dam.gd" id="1_c74rr"]
 [ext_resource type="AudioStream" uid="uid://dhtwt0745l18b" path="res://sound/dam_sounds/creaking.mp3" id="2_b10hv"]
+[ext_resource type="AudioStream" uid="uid://bu21wsomcwh8" path="res://sound/dam_sounds/hydraulic_hiss.mp3" id="3_kqyca"]
+[ext_resource type="AudioStream" uid="uid://d418mjaeniv3" path="res://sound/dam_sounds/lock.mp3" id="4_r1dfd"]
 
 [node name="dam" type="Node2D"]
 script = ExtResource("1_c74rr")
@@ -9,3 +11,9 @@ script = ExtResource("1_c74rr")
 [node name="creaking" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("2_b10hv")
 volume_db = 3.0
+
+[node name="hydraulic" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_kqyca")
+
+[node name="lock" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_r1dfd")

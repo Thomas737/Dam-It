@@ -1,49 +1,33 @@
-[gd_scene load_steps=7 format=3 uid="uid://be50py6ltuld2"]
+[gd_scene load_steps=6 format=3 uid="uid://be50py6ltuld2"]
 
+[ext_resource type="Script" path="res://scripts/pause_menu.gd" id="1_dj0yt"]
 [ext_resource type="Texture2D" uid="uid://q48tu5fotwwq" path="res://sprites/screens/paused.png" id="1_p6rbs"]
-[ext_resource type="Script" path="res://scenes/pause_menu.gd" id="1_u820l"]
 [ext_resource type="Texture2D" uid="uid://b1b01fbyc5sia" path="res://sprites/screens/help.png" id="3_k6vx5"]
 [ext_resource type="Texture2D" uid="uid://bxta3e8oje5w5" path="res://sprites/screens/QUIT.png" id="4_k5jtq"]
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_lsg2d"]
-size = Vector2(30, 14)
-
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_7q86x"]
-size = Vector2(30, 14)
+[ext_resource type="Texture2D" uid="uid://b4wu1f2tvtmhf" path="res://sprites/screens/helpUI.png" id="5_e188t"]
 
 [node name="pause_menu" type="CanvasLayer"]
 follow_viewport_enabled = true
-script = ExtResource("1_u820l")
+script = ExtResource("1_dj0yt")
 
 [node name="pause_screen" type="Sprite2D" parent="."]
 texture = ExtResource("1_p6rbs")
 
 [node name="help" type="Node2D" parent="."]
-position = Vector2(-23, 7)
+position = Vector2(-23, 11)
 metadata/_edit_group_ = true
 
 [node name="text" type="Sprite2D" parent="help"]
 texture = ExtResource("3_k6vx5")
 
-[node name="help" type="Area2D" parent="help"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="help/help"]
-shape = SubResource("RectangleShape2D_lsg2d")
-
 [node name="quit" type="Node2D" parent="."]
-position = Vector2(23, 7)
+position = Vector2(23, 11)
 metadata/_edit_group_ = true
 
 [node name="text" type="Sprite2D" parent="quit"]
 texture = ExtResource("4_k5jtq")
 
-[node name="quit" type="Area2D" parent="quit"]
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="quit/quit"]
-shape = SubResource("RectangleShape2D_7q86x")
-
 [node name="helpUI" type="Sprite2D" parent="."]
 unique_name_in_owner = true
-
-[connection signal="input_event" from="help/help" to="." method="_on_help_input_event"]
-[connection signal="input_event" from="quit/quit" to="." method="_on_quit_input_event"]
+scale = Vector2(2, 2)
+texture = ExtResource("5_e188t")

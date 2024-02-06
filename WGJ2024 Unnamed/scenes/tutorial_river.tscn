@@ -1,0 +1,222 @@
+[gd_scene load_steps=14 format=3 uid="uid://c6fxvlcgeslpe"]
+
+[ext_resource type="Texture2D" uid="uid://cjbtu61bw0y1i" path="res://sprites/water.png" id="1_0gxg8"]
+[ext_resource type="Script" path="res://scenes/tutorial_river.gd" id="1_sdt52"]
+[ext_resource type="Texture2D" uid="uid://cdhe3x3eairvb" path="res://sprites/dam_piece.png" id="2_w4sho"]
+[ext_resource type="Texture2D" uid="uid://bysharhuvfnjv" path="res://sprites/struts/old_dam_struts.png" id="3_am6a6"]
+[ext_resource type="AudioStream" uid="uid://csk6thicbb5d5" path="res://sound/natural_sound/water.wav" id="4_uyclp"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_or7to"]
+size = Vector2(38.8329, 5.86888)
+
+[sub_resource type="Gradient" id="Gradient_88s0w"]
+offsets = PackedFloat32Array(0, 0.213115, 0.483607, 0.795082, 1)
+colors = PackedColorArray(0.501961, 0.65098, 0.913725, 1, 0.839615, 0.887604, 0.972217, 1, 1, 1, 1, 1, 0.864434, 0.905492, 0.976822, 1, 0.52549, 0.670588, 0.917647, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_5cgtr"]
+gradient = SubResource("Gradient_88s0w")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_ekcyw"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(192, 108, 1)
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(-1, 0, 0)
+spread = 20.0
+initial_velocity_min = 50.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 0, 0)
+scale_max = 1.5
+color = Color(0.733333, 1, 1, 0.615686)
+color_ramp = SubResource("GradientTexture1D_5cgtr")
+turbulence_noise_strength = 0.1
+turbulence_noise_scale = 10.0
+
+[sub_resource type="Gradient" id="Gradient_g5a0p"]
+offsets = PackedFloat32Array(0, 0.737705, 1)
+colors = PackedColorArray(1, 1, 1, 1, 0.718027, 0.781481, 0.892563, 1, 0.235539, 0.407572, 0.708726, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_mljfk"]
+gradient = SubResource("Gradient_g5a0p")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_k2owc"]
+particle_flag_disable_z = true
+emission_shape_scale = Vector3(4, 4, 1)
+emission_shape = 1
+emission_sphere_radius = 1.0
+direction = Vector3(-1, -1.525, 0)
+spread = 60.0
+initial_velocity_min = 10.0
+initial_velocity_max = 10.0
+gravity = Vector3(-10, 0, 0)
+color_ramp = SubResource("GradientTexture1D_mljfk")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_q7unv"]
+viewport_path = NodePath("SubViewport")
+
+[node name="tutorial_river" type="Node2D"]
+script = ExtResource("1_sdt52")
+
+[node name="Water" type="Sprite2D" parent="."]
+z_index = -30
+texture = ExtResource("1_0gxg8")
+
+[node name="oldDamSection" type="StaticBody2D" parent="."]
+z_index = -11
+position = Vector2(-25, 77)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="oldDamSection"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_w4sho")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="oldDamSection"]
+polygon = PackedVector2Array(0, -5, 9, 0, 0, 5, -9, 0)
+
+[node name="oldDamSection2" type="StaticBody2D" parent="."]
+z_index = -11
+position = Vector2(1, 110)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="oldDamSection2"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_w4sho")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="oldDamSection2"]
+polygon = PackedVector2Array(0, -5, 9, 0, 0, 5, -9, 0)
+
+[node name="oldDamSection3" type="StaticBody2D" parent="."]
+z_index = -11
+position = Vector2(-16, 36)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="oldDamSection3"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_w4sho")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="oldDamSection3"]
+polygon = PackedVector2Array(0, -5, 9, 0, 0, 5, -9, 0)
+
+[node name="oldDamSection4" type="StaticBody2D" parent="."]
+z_index = -11
+position = Vector2(-16, -49)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="oldDamSection4"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_w4sho")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="oldDamSection4"]
+polygon = PackedVector2Array(0, -5, 9, 0, 0, 5, -9, 0)
+
+[node name="oldDamSection5" type="StaticBody2D" parent="."]
+z_index = -11
+position = Vector2(-26, -88)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D3" type="Sprite2D" parent="oldDamSection5"]
+position = Vector2(2.08165e-12, 2.08165e-12)
+texture = ExtResource("2_w4sho")
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="oldDamSection5"]
+polygon = PackedVector2Array(0, -5, 9, 0, 0, 5, -9, 0)
+
+[node name="oldDamStrut" type="StaticBody2D" parent="."]
+z_index = -12
+position = Vector2(-21, 58)
+rotation = 1.78024
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="oldDamStrut"]
+texture = ExtResource("3_am6a6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="oldDamStrut"]
+position = Vector2(-0.978134, 0.061409)
+shape = SubResource("RectangleShape2D_or7to")
+
+[node name="oldDamStrut2" type="StaticBody2D" parent="."]
+z_index = -12
+position = Vector2(-21, -68)
+rotation = 1.3268
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="oldDamStrut2"]
+texture = ExtResource("3_am6a6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="oldDamStrut2"]
+position = Vector2(-0.978134, 0.061409)
+shape = SubResource("RectangleShape2D_or7to")
+
+[node name="oldDamStrut4" type="StaticBody2D" parent="."]
+z_index = -12
+position = Vector2(-33, -108)
+rotation = 1.24531
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="oldDamStrut4"]
+texture = ExtResource("3_am6a6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="oldDamStrut4"]
+position = Vector2(-0.978134, 0.061409)
+shape = SubResource("RectangleShape2D_or7to")
+
+[node name="oldDamStrut5" type="StaticBody2D" parent="."]
+z_index = -12
+position = Vector2(-12, 95)
+rotation = 0.943309
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="oldDamStrut5"]
+texture = ExtResource("3_am6a6")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="oldDamStrut5"]
+position = Vector2(-0.978134, 0.061409)
+shape = SubResource("RectangleShape2D_or7to")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+size = Vector2i(384, 216)
+
+[node name="riverParticles" type="GPUParticles2D" parent="SubViewport"]
+z_index = -12
+position = Vector2(212, 108)
+amount = 200
+process_material = SubResource("ParticleProcessMaterial_ekcyw")
+visibility_rect = Rect2(0, 0, 0, 0)
+trail_enabled = true
+trail_lifetime = 0.2
+
+[node name="foam" type="GPUParticles2D" parent="SubViewport"]
+position = Vector2(183.52, 143.77)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_k2owc")
+lifetime = 2.0
+visibility_rect = Rect2(0, 0, 0, 0)
+trail_enabled = true
+trail_lifetime = 0.1
+
+[node name="foam2" type="GPUParticles2D" parent="SubViewport"]
+position = Vector2(184.25, 59.23)
+scale = Vector2(1, -1)
+amount = 500
+process_material = SubResource("ParticleProcessMaterial_k2owc")
+lifetime = 2.0
+visibility_rect = Rect2(0, 0, 0, 0)
+trail_enabled = true
+trail_lifetime = 0.1
+
+[node name="TextureRect" type="TextureRect" parent="."]
+z_index = -29
+offset_left = -192.0
+offset_top = -108.0
+offset_right = 192.0
+offset_bottom = 108.0
+texture = SubResource("ViewportTexture_q7unv")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="water" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_uyclp")
+volume_db = -40.0
+autoplay = true

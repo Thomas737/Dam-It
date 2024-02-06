@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://byjmeavdkyino"]
+
+[ext_resource type="Texture2D" uid="uid://ckb2fcl1hq626" path="res://sprites/screens/menu.png" id="1_65gqe"]
+[ext_resource type="Script" path="res://scripts/menu.gd" id="1_aeq8h"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_ti2oq"]
+size = Vector2(89, 48)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_lj8c6"]
+size = Vector2(111, 48)
+
+[node name="menu" type="CanvasLayer"]
+follow_viewport_enabled = true
+script = ExtResource("1_aeq8h")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_65gqe")
+
+[node name="play" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="play"]
+position = Vector2(100.5, 59)
+shape = SubResource("RectangleShape2D_ti2oq")
+
+[node name="quit" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="quit"]
+position = Vector2(-102.5, 59)
+shape = SubResource("RectangleShape2D_lj8c6")
+
+[connection signal="input_event" from="play" to="." method="_on_play"]
+[connection signal="input_event" from="quit" to="." method="_on_quit"]

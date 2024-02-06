@@ -5,20 +5,22 @@ extends RigidBody2D
 const break_point = 16
 const water_power = -20
 const k = 8
-const rope_pull = 50
+const rope_pull = 70
+var water_on = 1
 
 var connected_struts = {}
 var rope_connections = []
 
+var is_strut = false
 var selected = false
 
 func _ready():
-	connected_to()
+	var throwaway = connected_to()
 	$selected.visible = false
 
 func connected_to():
+	var connected_joint_iteration = [self]
 	if connected_struts.values():
-		var connected_joint_iteration = [self]
 		var iterating_successfully = true
 		
 		while iterating_successfully:
@@ -34,6 +36,8 @@ func connected_to():
 			if joint.freeze:
 				if joint.other_layer_joint in connected_joint_iteration:
 					get_parent().static_connection(int(str(joint.name)[5]) + 1)
+	
+	return connected_joint_iteration
 
 func _process(delta):
 	if not len(connected_struts) and not freeze:
@@ -48,12 +52,11 @@ func _process(delta):
 			var extension = distance_to_joint - strut.physical_length
 			
 			var spring_force = direction_inwards * pow(abs(extension), 1.5) * k * sign(extension)
-			var water_force = Vector2(water_power * ((position.x-192)/600 + 2) - linear_velocity.x, 0)
+			var water_force = Vector2((water_power * ((position.x-192)/600 + 2) - linear_velocity.x) * water_on, 0)
 			add_constant_central_force(spring_force + water_force)
 			
 			if (abs(extension) > break_point):
 				$break.playing = true
-				strut.connected_joints = []
 				strut.queue_separation()
 				connected_struts.erase(strut)
 			
@@ -93,6 +96,9 @@ func add_rope(connector):
 		rope_connections.erase(connector)
 	else:
 		rope_connections.append(connector)
+
+func reinforce():
+	deselect()
 
 func deselect():
 	selected = false

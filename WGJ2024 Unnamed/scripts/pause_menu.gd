@@ -7,14 +7,12 @@ func _ready():
 	hide()
 	process_mode = Node.PROCESS_MODE_WHEN_PAUSED
 
-func _on_help_input_event(viewport, event: InputEvent, shape_idx):
-	if event.is_action_pressed("grab"):
+func _input(event):
+	if event.is_action_pressed("help"):
 		helpUI = !helpUI
 		if helpUI:
 			$helpUI.show()
 		else:
 			%helpUI.hide()
-
-func _on_quit_input_event(viewport, event: InputEvent, shape_idx):
-	if event.is_action_pressed("grab"):
+	if event.is_action_pressed("quit"):
 		get_tree().quit()

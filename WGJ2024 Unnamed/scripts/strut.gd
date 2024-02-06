@@ -11,6 +11,8 @@ var target_snap = null
 var self_snap = null
 var broken = false
 
+var is_strut = true
+
 func _ready():
 	truss(true)
 
@@ -19,6 +21,7 @@ func _process(delta):
 		disconnect_area()
 	
 	if broken:
+		connected_joints = []
 		broken = false
 		truss(true)
 	
@@ -43,12 +46,14 @@ func _on_interaction(_viewport, event: InputEvent, _shape_idx):
 			for connected_joint in connected_joints:
 				if is_instance_valid(connected_joint) and connected_joint:
 					connected_joint.connected_struts.erase(self)
+			connected_joints = []
 			$remove.play()
 			$sprite.play("grow", -5, true)
 
 func deselect():
 	if truss(false):
 		$combine.play()
+	selected = false
 	$selected.visible = false
 	$sprite.play("grow", 5, false)
 
@@ -80,9 +85,9 @@ func truss(broken):
 	new_joint_upper.connected_struts[self] = new_joint_lower
 	
 	if upper_links:
-		new_joint_upper.connected_to()
+		var throwaway = new_joint_upper.connected_to()
 	if lower_links:
-		new_joint_lower.connected_to()
+		var throwaway = new_joint_lower.connected_to()
 	
 	return lower_links or upper_links
 
@@ -95,6 +100,12 @@ func construct_joint(direction):
 
 func get_other_joint(joint):
 	return connected_joints[(connected_joints.find(joint)+1) % 2]
+
+func reinforce():
+	if selected:
+		deselect()
+	
+	$sprite.play("reinforce")
 
 # When being held by player, snap to near joints
 func _on_snappingAreaUpper_enter(area: Area2D):
