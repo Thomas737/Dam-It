@@ -1,0 +1,53 @@
+[gd_scene load_steps=10 format=3 uid="uid://bkkf1gudqck04"]
+
+[ext_resource type="Script" path="res://scenes/storyp2.gd" id="1_6iqvl"]
+[ext_resource type="Texture2D" uid="uid://djtahsowi205i" path="res://sprites/screens/newspaper_2.png" id="1_twg28"]
+[ext_resource type="Texture2D" uid="uid://bivyw858qrcs5" path="res://sprites/highlight/screen_mask.png" id="2_jwsxn"]
+[ext_resource type="Texture2D" uid="uid://cla5gguobmfom" path="res://sprites/screens/newspaper_1.png" id="2_rpiul"]
+[ext_resource type="AudioStream" uid="uid://dlrygxu3g4hia" path="res://sound/story_sounds/paper1.mp3" id="4_3svds"]
+[ext_resource type="AudioStream" uid="uid://d0vpxfsegstbe" path="res://sound/story_sounds/paper2.mp3" id="5_jfjkd"]
+[ext_resource type="AudioStream" uid="uid://dux1b0blfmt6u" path="res://sound/music/story_p2.wav" id="6_lqvuj"]
+[ext_resource type="Texture2D" uid="uid://crjl7ke3a6nnr" path="res://sprites/screens/10m_time.png" id="8_wavtk"]
+[ext_resource type="Texture2D" uid="uid://bg33gnr6muv11" path="res://sprites/screens/do_what_you_can.png" id="9_43t2f"]
+
+[node name="storyp2" type="Node2D"]
+script = ExtResource("1_6iqvl")
+
+[node name="darkness_mask" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+texture = ExtResource("2_jwsxn")
+
+[node name="newspaper2" type="Sprite2D" parent="."]
+position = Vector2(-28.52, 200)
+rotation = -0.120428
+scale = Vector2(2.39, 2.39)
+texture = ExtResource("1_twg28")
+
+[node name="newspaper1" type="Sprite2D" parent="."]
+position = Vector2(28, 200)
+rotation = 0.357792
+scale = Vector2(2.39, 2.39)
+texture = ExtResource("2_rpiul")
+
+[node name="paper1" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_3svds")
+volume_db = -15.066
+
+[node name="paper2" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_jfjkd")
+volume_db = -15.066
+
+[node name="music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_lqvuj")
+autoplay = true
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="10m" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("8_wavtk")
+
+[node name="can" type="Sprite2D" parent="."]
+visible = false
+texture = ExtResource("9_43t2f")

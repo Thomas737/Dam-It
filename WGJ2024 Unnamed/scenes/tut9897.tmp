@@ -1,0 +1,204 @@
+[gd_scene load_steps=30 format=3 uid="uid://c45vh6mfhs001"]
+
+[ext_resource type="Shader" path="res://scripts/vignette.gdshader" id="1_k7kah"]
+[ext_resource type="Script" path="res://scenes/tutorial_game.gd" id="1_pmiaw"]
+[ext_resource type="PackedScene" uid="uid://c6fxvlcgeslpe" path="res://scenes/tutorial_river.tscn" id="2_c174j"]
+[ext_resource type="PackedScene" uid="uid://x6bvyulac3tb" path="res://scenes/dam.tscn" id="3_ke5cx"]
+[ext_resource type="PackedScene" uid="uid://0uiyl0r71iuo" path="res://scenes/joint.tscn" id="4_2vvq7"]
+[ext_resource type="Texture2D" uid="uid://bivyw858qrcs5" path="res://sprites/highlight/screen_mask.png" id="6_62h1v"]
+[ext_resource type="Texture2D" uid="uid://bpl18pmsea083" path="res://sprites/screens/DDE_game_state.png" id="7_el2v7"]
+[ext_resource type="Texture2D" uid="uid://ierea862xlvk" path="res://sprites/screens/press_space_to_continue.png" id="7_xahwj"]
+[ext_resource type="Texture2D" uid="uid://dx66n6veijfsh" path="res://sprites/screens/dam_example.png" id="9_gfi68"]
+[ext_resource type="Texture2D" uid="uid://ksjnwqkx636p" path="res://sprites/screens/dam_env.png" id="10_gmrjb"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_nl0py"]
+shader = ExtResource("1_k7kah")
+shader_parameter/color = null
+shader_parameter/multiplier = 0.36
+shader_parameter/softness = 0.84
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_osrrc"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(0, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_40cku"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(106, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o6www"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(212, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_68h28"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(318, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_88xcu"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(424, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kl3r"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(424, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es114"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(530, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6l15"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(636, 0, 106, 66)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_4son1"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_osrrc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_40cku")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o6www")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_68h28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88xcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kl3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_es114")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6l15")
+}],
+"loop": false,
+"name": &"Introduction",
+"speed": 5.0
+}]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_sg10f"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(0, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l1dle"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(96, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_15qax"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(192, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_1wrkh"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(288, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_feusr"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(384, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_753pm"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(480, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_l0jtx"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(576, 0, 96, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vlmsy"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(672, 0, 96, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jeirp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_sg10f")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l1dle")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_15qax")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_1wrkh")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_feusr")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_753pm")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_l0jtx")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vlmsy")
+}],
+"loop": true,
+"name": &"default",
+"speed": 2.0
+}]
+
+[node name="tutorial_game" type="Node2D"]
+script = ExtResource("1_pmiaw")
+
+[node name="vignette" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="vignette"]
+z_index = 1
+material = SubResource("ShaderMaterial_nl0py")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="tutorial_river" parent="." instance=ExtResource("2_c174j")]
+
+[node name="dam" parent="." instance=ExtResource("3_ke5cx")]
+z_index = -19
+
+[node name="joint" parent="dam" instance=ExtResource("4_2vvq7")]
+z_index = -10
+position = Vector2(96, -8)
+freeze = true
+
+[node name="joint2" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_2vvq7")]
+position = Vector2(-7, 36)
+freeze = true
+other_layer_joint = NodePath("../joint3")
+
+[node name="joint3" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_2vvq7")]
+position = Vector2(-7, -49)
+freeze = true
+other_layer_joint = NodePath("../joint2")
+
+[node name="darkness_mask" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 1)
+z_index = 1
+texture = ExtResource("6_62h1v")
+
+[node name="game_state" type="AnimatedSprite2D" parent="."]
+z_index = 1
+sprite_frames = SubResource("SpriteFrames_4son1")
+animation = &"Introduction"
+
+[node name="space_to_continue" type="Sprite2D" parent="."]
+z_index = 1
+position = Vector2(-130, 64)
+texture = ExtResource("7_xahwj")
+
+[node name="truss_example" type="AnimatedSprite2D" parent="."]
+position = Vector2(-2, -19)
+sprite_frames = SubResource("SpriteFrames_jeirp")
+
+[node name="dam_env" type="Sprite2D" parent="."]
+texture = ExtResource("10_gmrjb")

@@ -12,10 +12,21 @@ var reinforcing = false
 var reinforce_next_sound = 1
 var sound_n = 3
 
+var water_stopped = false
+var in_tutorial = false
+
 const static_layer_n = 5
 var current_layer = 0
 
 func _process(delta):
+	if in_tutorial:
+		for joint in get_children():
+			if joint is RigidBody2D:
+				if water_stopped:
+					joint.water_on = 0
+				else:
+					joint.water_on = 0.5
+	
 	if not $creaking.playing and current_layer > 0:
 		$creaking.playing = true
 	
@@ -53,12 +64,13 @@ func _input(event):
 		new_selection(null)
 
 func static_connection(layer):
-	if current_layer < layer:
-		current_layer = max(current_layer, layer)
-		
-		if current_layer < static_layer_n:
-			add_child(static_joints[current_layer * 2])
-			add_child(static_joints[current_layer * 2 + 1])
+	if not in_tutorial:
+		if current_layer < layer:
+			current_layer = max(current_layer, layer)
+			
+			if current_layer < static_layer_n:
+				add_child(static_joints[current_layer * 2])
+				add_child(static_joints[current_layer * 2 + 1])
 
 func new_selection(newly_selected):
 	for child in get_children():
@@ -105,11 +117,17 @@ func score():
 					var all_connections = joint.connected_to()
 					longest_string = max(len(all_connections), longest_string)
 					if joint.other_layer_joint in all_connections:
-						layer_connections += 100/all_connections.index(joint.other_layer_joint)
+						layer_connections += 100/all_connections.find(joint.other_layer_joint)
 	
 	return total_strut_score + longest_string + layer_connections
 
 func water_on(value: bool):
-	for joint in get_children():
-		if joint is RigidBody2D:
-			joint.water_on = int(value)
+	in_tutorial = true
+	water_stopped = not value
+
+func manual_spawn():
+	var new_strut = strut.instantiate()
+	new_strut.position = Vector2(randf_range(50, 150), randf_range(-100, 100))
+	new_strut.rotation = randf() * 2*PI
+	add_child(new_strut)
+	next_strut_time = 10 + rng.randf_range(-5, 5)

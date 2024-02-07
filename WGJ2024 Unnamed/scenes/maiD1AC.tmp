@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://61ua8kb700fg"]
+
+[ext_resource type="Script" path="res://scripts/main.gd" id="1_1hlts"]
+[ext_resource type="PackedScene" uid="uid://byjmeavdkyino" path="res://scenes/menu.tscn" id="2_jefla"]
+[ext_resource type="Shader" path="res://scripts/vignette.gdshader" id="3_j4wb3"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_cei3i"]
+shader = ExtResource("3_j4wb3")
+shader_parameter/color = null
+shader_parameter/multiplier = 0.36
+shader_parameter/softness = 0.84
+
+[node name="main" type="Node2D"]
+process_mode = 3
+script = ExtResource("1_1hlts")
+
+[node name="mainCamera" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="menu" parent="." instance=ExtResource("2_jefla")]
+
+[node name="vignette" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="vignette"]
+z_index = 1
+material = SubResource("ShaderMaterial_cei3i")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+metadata/_edit_use_anchors_ = true

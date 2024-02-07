@@ -1,0 +1,146 @@
+[gd_scene load_steps=19 format=3 uid="uid://cbvys045fbsb7"]
+
+[ext_resource type="Script" path="res://scripts/storyp3.gd" id="1_wsybq"]
+[ext_resource type="Texture2D" uid="uid://dwlhv8vgkg5ub" path="res://sprites/screens/did_you.png" id="2_b6dat"]
+[ext_resource type="Texture2D" uid="uid://mj5eo6lya2pq" path="res://sprites/numbers.png" id="2_v1vt1"]
+[ext_resource type="Texture2D" uid="uid://dhyf3jqm0qi2j" path="res://sprites/screens/catch_every_strut.png" id="3_jk7q0"]
+[ext_resource type="Texture2D" uid="uid://cl3k60ld6v8vk" path="res://sprites/screens/save_every_life.png" id="4_mnv52"]
+[ext_resource type="Texture2D" uid="uid://dpxi8pinoriu7" path="res://sprites/screens/actions_and_consequences.png" id="6_5erwj"]
+[ext_resource type="Texture2D" uid="uid://bivyw858qrcs5" path="res://sprites/highlight/screen_mask.png" id="6_8ig14"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_u1tc3"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(45, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8xr3t"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(40, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_texp1"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(35, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_ah6xa"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(30, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_pv362"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(25, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_v16d5"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(20, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7qkhn"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(15, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vtnk4"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(10, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_m8yin"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(5, 0, 5, 11)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_16ysb"]
+atlas = ExtResource("2_v1vt1")
+region = Rect2(0, 0, 5, 11)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_mv4t3"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_u1tc3")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8xr3t")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_texp1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_ah6xa")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_pv362")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_v16d5")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7qkhn")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vtnk4")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_m8yin")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_16ysb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
+[node name="storyp3" type="Node2D"]
+script = ExtResource("1_wsybq")
+
+[node name="darkness_mask" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0)
+z_index = -1
+texture = ExtResource("6_8ig14")
+
+[node name="did_you" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+position = Vector2(0, -27.3)
+texture = ExtResource("2_b6dat")
+
+[node name="catch_every_strut" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("3_jk7q0")
+
+[node name="save_every_life" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("4_mnv52")
+
+[node name="actions_have_consequences" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("6_5erwj")
+
+[node name="ones" type="AnimatedSprite2D" parent="."]
+process_mode = 1
+position = Vector2(27, -64)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_mv4t3")
+speed_scale = 0.0
+
+[node name="tens" type="AnimatedSprite2D" parent="."]
+process_mode = 1
+position = Vector2(9, -64)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_mv4t3")
+autoplay = "default"
+speed_scale = 0.0
+
+[node name="hundreds" type="AnimatedSprite2D" parent="."]
+process_mode = 1
+position = Vector2(-9, -64)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_mv4t3")
+autoplay = "default"
+speed_scale = 0.0
+
+[node name="thousands" type="AnimatedSprite2D" parent="."]
+process_mode = 1
+position = Vector2(-27, -64)
+scale = Vector2(3, 3)
+sprite_frames = SubResource("SpriteFrames_mv4t3")
+autoplay = "default"
+speed_scale = 0.0
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)

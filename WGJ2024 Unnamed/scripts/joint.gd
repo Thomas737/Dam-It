@@ -3,7 +3,7 @@ extends RigidBody2D
 @export var other_layer_joint: RigidBody2D
 
 const break_point = 16
-const water_power = -20
+const water_power = -16
 const k = 8
 const rope_pull = 70
 var water_on = 1

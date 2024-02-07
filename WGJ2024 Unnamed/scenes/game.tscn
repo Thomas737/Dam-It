@@ -418,16 +418,15 @@ autoplay = "default"
 [node name="tens" type="AnimatedSprite2D" parent="time_display"]
 sprite_frames = SubResource("SpriteFrames_0jxqb")
 autoplay = "default"
-frame = 9
 
 [node name="hundreds" type="AnimatedSprite2D" parent="time_display"]
 position = Vector2(-6, 0)
 sprite_frames = SubResource("SpriteFrames_ole82")
 autoplay = "default"
-frame = 9
+frame = 7
 
 [node name="darkness_mask" type="Sprite2D" parent="."]
-modulate = Color(0, 0, 0, 0.258824)
+modulate = Color(0, 0, 0, 1)
 z_index = 1
 texture = ExtResource("6_l2es0")
 

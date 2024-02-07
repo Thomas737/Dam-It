@@ -15,6 +15,12 @@ func _ready():
 	thunder_types = [%thunder_1, %thunder_2, %thunder_3]
 
 func _process(delta):
+	if not ending:
+		if $river/water.volume_db < -18:
+			$river/water.volume_db += 7 * delta
+		if $darkness_mask.modulate.a > 66/255:
+			$darkness_mask.modulate.a -= darkening_speed * delta
+	
 	if ending:
 		$darkness_mask.modulate.a += darkening_speed * delta
 		if $darkness_mask.modulate.a > 1:

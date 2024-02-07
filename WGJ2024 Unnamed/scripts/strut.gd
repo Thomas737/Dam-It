@@ -122,6 +122,9 @@ func disconnect_area():
 	target_snap = null
 	self_snap = Vector2(0, 1)
 
+func delete():
+	_deletion_area_entered(null)
+
 func _deletion_area_entered(area):
 	for connected_joint in connected_joints:
 		if is_instance_valid(connected_joint) and connected_joint:

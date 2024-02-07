@@ -1,0 +1,56 @@
+[gd_scene load_steps=10 format=3 uid="uid://brartoihhh2eg"]
+
+[ext_resource type="Script" path="res://scripts/storyp1.gd" id="1_fpnrp"]
+[ext_resource type="AudioStream" uid="uid://igmf84p0qk7y" path="res://sound/dam_sounds/alarm.mp3" id="1_otsu5"]
+[ext_resource type="AudioStream" uid="uid://b18uybiyxa4sl" path="res://sound/music/story_p1.wav" id="2_0xtf1"]
+[ext_resource type="AudioStream" uid="uid://c32f2wjcbtk32" path="res://sound/natural_sound/thunder_2.mp3" id="2_81brw"]
+[ext_resource type="Texture2D" uid="uid://l3r6ikn2ldjd" path="res://sprites/screens/storyp1.png" id="2_x4vtg"]
+[ext_resource type="AudioStream" uid="uid://csgnx56sfxk13" path="res://sound/dam_sounds/SOS.mp3" id="4_83dxv"]
+[ext_resource type="Texture2D" uid="uid://bivyw858qrcs5" path="res://sprites/highlight/screen_mask.png" id="7_64cg8"]
+[ext_resource type="Texture2D" uid="uid://bh8s7nh2l0vxk" path="res://sprites/highlight/lightning_mask.png" id="8_m0ycc"]
+[ext_resource type="Texture2D" uid="uid://b7t1ga115to5q" path="res://sprites/screens/2_years_ago.png" id="9_045vx"]
+
+[node name="storyp1" type="Node2D"]
+process_mode = 1
+script = ExtResource("1_fpnrp")
+
+[node name="darkness_mask" type="Sprite2D" parent="."]
+modulate = Color(0, 0, 0, 0.501961)
+texture = ExtResource("7_64cg8")
+
+[node name="radio" type="Sprite2D" parent="."]
+visible = false
+position = Vector2(0, 3.055)
+scale = Vector2(2.5, 2.5)
+texture = ExtResource("2_x4vtg")
+
+[node name="lightning_mask" type="Sprite2D" parent="."]
+unique_name_in_owner = true
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("8_m0ycc")
+
+[node name="storyp1_music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_0xtf1")
+bus = &"story_sound"
+
+[node name="alarm" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("1_otsu5")
+volume_db = -10.0
+bus = &"story_sound"
+
+[node name="thunder" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_81brw")
+volume_db = -10.0
+bus = &"story_sound"
+
+[node name="morse" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_83dxv")
+volume_db = -10.0
+bus = &"story_sound"
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(3, 3)
+
+[node name="2_years_ago" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+texture = ExtResource("9_045vx")

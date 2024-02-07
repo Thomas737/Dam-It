@@ -1,13 +1,16 @@
-[gd_scene load_steps=15 format=3 uid="uid://c45vh6mfhs001"]
+[gd_scene load_steps=32 format=3 uid="uid://c45vh6mfhs001"]
 
+[ext_resource type="Script" path="res://scripts/tutorial_game.gd" id="1_a1h85"]
 [ext_resource type="Shader" path="res://scripts/vignette.gdshader" id="1_k7kah"]
-[ext_resource type="Script" path="res://scenes/tutorial_game.gd" id="1_pmiaw"]
 [ext_resource type="PackedScene" uid="uid://c6fxvlcgeslpe" path="res://scenes/tutorial_river.tscn" id="2_c174j"]
 [ext_resource type="PackedScene" uid="uid://x6bvyulac3tb" path="res://scenes/dam.tscn" id="3_ke5cx"]
 [ext_resource type="PackedScene" uid="uid://0uiyl0r71iuo" path="res://scenes/joint.tscn" id="4_2vvq7"]
 [ext_resource type="Texture2D" uid="uid://bivyw858qrcs5" path="res://sprites/highlight/screen_mask.png" id="6_62h1v"]
 [ext_resource type="Texture2D" uid="uid://bpl18pmsea083" path="res://sprites/screens/DDE_game_state.png" id="7_el2v7"]
 [ext_resource type="Texture2D" uid="uid://ierea862xlvk" path="res://sprites/screens/press_space_to_continue.png" id="7_xahwj"]
+[ext_resource type="Texture2D" uid="uid://dx66n6veijfsh" path="res://sprites/screens/dam_example.png" id="9_gfi68"]
+[ext_resource type="Texture2D" uid="uid://ksjnwqkx636p" path="res://sprites/screens/dam_env.png" id="10_gmrjb"]
+[ext_resource type="Texture2D" uid="uid://bqsdp31uudrui" path="res://sprites/screens/in_the_present.png" id="11_5ofa3"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_nl0py"]
 shader = ExtResource("1_k7kah")
@@ -31,6 +34,22 @@ region = Rect2(212, 0, 106, 66)
 atlas = ExtResource("7_el2v7")
 region = Rect2(318, 0, 106, 66)
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_88xcu"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(424, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_7kl3r"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(424, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_es114"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(530, 0, 106, 66)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_y6l15"]
+atlas = ExtResource("7_el2v7")
+region = Rect2(636, 0, 106, 66)
+
 [sub_resource type="SpriteFrames" id="SpriteFrames_4son1"]
 animations = [{
 "frames": [{
@@ -45,14 +64,98 @@ animations = [{
 }, {
 "duration": 1.0,
 "texture": SubResource("AtlasTexture_68h28")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_88xcu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_7kl3r")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_es114")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_y6l15")
 }],
 "loop": false,
 "name": &"Introduction",
 "speed": 5.0
 }]
 
+[sub_resource type="AtlasTexture" id="AtlasTexture_fsg31"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(0, 0, 138, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_0px60"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(138, 0, 138, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t6sgw"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(276, 0, 138, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_s2qxd"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(414, 0, 138, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yx3qo"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(552, 0, 138, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3lnay"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(690, 0, 138, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_vhlas"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(828, 0, 138, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_a460c"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(966, 0, 138, 67)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_qsaeh"]
+atlas = ExtResource("9_gfi68")
+region = Rect2(1104, 0, 138, 67)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_jeirp"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fsg31")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_0px60")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t6sgw")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_s2qxd")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yx3qo")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3lnay")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_vhlas")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_a460c")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_qsaeh")
+}],
+"loop": false,
+"name": &"default",
+"speed": 1.0
+}]
+
 [node name="tutorial_game" type="Node2D"]
-script = ExtResource("1_pmiaw")
+process_mode = 1
+script = ExtResource("1_a1h85")
 
 [node name="vignette" type="CanvasLayer" parent="."]
 
@@ -77,13 +180,15 @@ z_index = -10
 position = Vector2(96, -8)
 freeze = true
 
-[node name="joint2" parent="dam" instance=ExtResource("4_2vvq7")]
+[node name="joint2" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_2vvq7")]
 position = Vector2(-7, 36)
 freeze = true
+other_layer_joint = NodePath("../joint3")
 
-[node name="joint3" parent="dam" instance=ExtResource("4_2vvq7")]
+[node name="joint3" parent="dam" node_paths=PackedStringArray("other_layer_joint") instance=ExtResource("4_2vvq7")]
 position = Vector2(-7, -49)
 freeze = true
+other_layer_joint = NodePath("../joint2")
 
 [node name="darkness_mask" type="Sprite2D" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -97,5 +202,20 @@ animation = &"Introduction"
 
 [node name="space_to_continue" type="Sprite2D" parent="."]
 z_index = 1
-position = Vector2(0, 60)
+position = Vector2(-130, 64)
 texture = ExtResource("7_xahwj")
+
+[node name="truss_example" type="AnimatedSprite2D" parent="."]
+process_mode = 1
+position = Vector2(-114, -9)
+sprite_frames = SubResource("SpriteFrames_jeirp")
+frame = 8
+frame_progress = 1.0
+
+[node name="dam_env" type="Sprite2D" parent="."]
+texture = ExtResource("10_gmrjb")
+
+[node name="return_to_present" type="Sprite2D" parent="."]
+modulate = Color(1, 1, 1, 0)
+z_index = 2
+texture = ExtResource("11_5ofa3")

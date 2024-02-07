@@ -1,7 +1,7 @@
 [gd_scene load_steps=14 format=3 uid="uid://c6fxvlcgeslpe"]
 
 [ext_resource type="Texture2D" uid="uid://cjbtu61bw0y1i" path="res://sprites/water.png" id="1_0gxg8"]
-[ext_resource type="Script" path="res://scenes/tutorial_river.gd" id="1_sdt52"]
+[ext_resource type="Script" path="res://scripts/tutorial_river.gd" id="1_sdt52"]
 [ext_resource type="Texture2D" uid="uid://cdhe3x3eairvb" path="res://sprites/dam_piece.png" id="2_w4sho"]
 [ext_resource type="Texture2D" uid="uid://bysharhuvfnjv" path="res://sprites/struts/old_dam_struts.png" id="3_am6a6"]
 [ext_resource type="AudioStream" uid="uid://csk6thicbb5d5" path="res://sound/natural_sound/water.wav" id="4_uyclp"]
@@ -218,5 +218,5 @@ zoom = Vector2(3, 3)
 
 [node name="water" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_uyclp")
-volume_db = -40.0
+volume_db = -80.0
 autoplay = true
